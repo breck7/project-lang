@@ -1,0 +1,18 @@
+project
+ @keywords
+  file
+ @catchAllKeyword error
+error
+ @parseClass ErrorNode
+file
+ @parameters filepath
+ @keywords
+  external
+  absolute
+  relative
+ @parseClass ./ProjectNode.js
+term
+ @parameters filepath
+external term
+absolute term
+relative term
