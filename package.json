@@ -1,6 +1,6 @@
 {
   "name": "project-lang",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Tree Language for project dependency management.",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,6 @@
   "author": "Breck Yunits",
   "license": "MIT",
   "dependencies": {
-    "treeprogram": "^8.2.1"
+    "treeprogram": "^8.6.0"
   }
 }

@@ -5,14 +5,14 @@ project
 error
  @parseClass ErrorNode
 file
- @parameters filepath
+ @columns filepath
  @keywords
   external
   absolute
   relative
  @parseClass ./ProjectNode.js
 term
- @parameters filepath
+ @columns filepath
 external term
 absolute term
 relative term

@@ -1,6 +1,6 @@
 #! /usr/local/bin/node --use_strict /usr/local/bin/tree
 #setup
- require ../src/ProjectProgram.js
+ require ./index.js
 #test basics
  #setup
   %%|
