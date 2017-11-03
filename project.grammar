@@ -3,14 +3,14 @@ project
   file
  @catchAllKeyword error
 error
- @parseClass ErrorNode
+ @parser js ErrorNode
 file
  @columns filepath
  @keywords
   external
   absolute
   relative
- @parseClass ./ProjectNode.js
+ @parser js ./ProjectNode.js
 term
  @columns filepath
 external term
