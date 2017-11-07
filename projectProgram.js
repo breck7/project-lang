@@ -55,7 +55,7 @@ class projectProgram extends otree.program {
       const requiredFiles = this._getRequiredFiles(content)
       required.append(`file ${line}`, requiredFiles.length ? requiredFiles.join("\n") : undefined)
     })
-    return new projectProgram(required.toString())
+    return required.toString()
   }
 }
 

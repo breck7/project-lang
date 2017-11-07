@@ -1,6 +1,6 @@
 {
   "name": "project-lang",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A Tree Language for project dependency management.",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,7 @@
     "type": "git",
     "url": "github.com/breck7/project-lang"
   },
-  "keywords": [
-    "project"
-  ],
+  "keywords": ["project"],
   "author": "Breck Yunits",
   "license": "MIT",
   "dependencies": {
