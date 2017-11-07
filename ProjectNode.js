@@ -1,7 +1,7 @@
-const TreeProgram = require("treeprogram")
+const otree = require("otree")
 const path = require("path")
 
-class ProjectNode extends TreeProgram.NonTerminalNode {
+class ProjectNode extends otree.NonTerminalNode {
   getFilePath() {
     return this.getWord(1)
   }
@@ -13,7 +13,7 @@ class ProjectNode extends TreeProgram.NonTerminalNode {
         if (keyword === "external") return ""
         if (keyword === "absolute") return child.getWord(1)
         const link = child.getWord(1)
-        const folderPath = TreeProgram.getPathWithoutFileName(this.getFilePath())
+        const folderPath = otree.Utils.getPathWithoutFileName(this.getFilePath())
         const resolvedPath = path.resolve(folderPath + "/" + link)
         return resolvedPath
       })

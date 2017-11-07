@@ -1,4 +1,4 @@
-#! /usr/local/bin/node --use_strict /usr/local/bin/tree
+#! /usr/local/bin/node --use_strict /usr/local/bin/otree
 #setup
  require ./index.js
 #test basics
