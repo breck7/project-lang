@@ -1,19 +1,19 @@
-project
+@grammar project
  @parser js ./projectProgram.js
  @keywords
   file
  @catchAllKeyword error
-error
+@keyword error
  @parser js ErrorNode
-file
+@keyword file
  @columns filepath
  @keywords
   external
   absolute
   relative
  @parser js ./ProjectNode.js
-term
+@keyword term
  @columns filepath
-external term
-absolute term
-relative term
+@keyword external term
+@keyword absolute term
+@keyword relative term
