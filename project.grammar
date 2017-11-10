@@ -3,6 +3,8 @@
  @keywords
   file
  @catchAllKeyword error
+@wordType filepath
+ @regex .?
 @keyword error
  @parser js ErrorNode
 @keyword file
