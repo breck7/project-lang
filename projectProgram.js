@@ -1,8 +1,8 @@
 const fs = require("fs")
-const otree = require("otree")
-const TreeNode = otree.TreeNode
+const jtree = require("jtree")
+const TreeNode = jtree.TreeNode
 
-class projectProgram extends otree.program {
+class projectProgram extends jtree.program {
   getOrderedDependenciesArray() {
     const cloned = this.clone()
     const sorted = []
