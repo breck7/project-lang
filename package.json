@@ -1,6 +1,6 @@
 {
   "name": "project-lang",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A Tree Language for project dependency management.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
   "author": "Breck Yunits",
   "license": "MIT",
   "dependencies": {
-    "jtree": "^14.0.0"
+    "jtree": "^14.3.1"
   }
 }

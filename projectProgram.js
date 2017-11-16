@@ -53,7 +53,7 @@ class projectProgram extends jtree.program {
       const line = child.getLine()
       const content = fs.readFileSync(line, "utf8")
       const requiredFiles = this._getRequiredFiles(content)
-      required.append(`file ${line}`, requiredFiles.length ? requiredFiles.join("\n") : undefined)
+      required.appendLineAndChildren(`file ${line}`, requiredFiles.length ? requiredFiles.join("\n") : undefined)
     })
     return required.toString()
   }
