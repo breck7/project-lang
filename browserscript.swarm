@@ -1,0 +1,27 @@
+#! /usr/local/bin/node --use_strict /usr/local/bin/jtree
+#setup
+ require ./BrowserScript.js
+#test basics
+ #setup
+  %%|
+   const ProjectProgram = require("project-lang")
+   import TreeNode from "../base/TreeNode.js"
+   class Foobar extends TreeNode {}
+   module.exports = Foobar
+ getString
+  =~ string
+  =+ require
+ removeRequires
+  getString
+   =- require
+   =+ import
+ removeImports
+  =- import
+  =- strict
+ addUseStrict
+  getString
+   =+ strict
+   =- window
+ changeNodeExportsToWindowExports
+  getString
+   =+ window

@@ -1,6 +1,7 @@
 const fs = require("fs")
 const jtree = require("jtree")
 const TreeNode = jtree.TreeNode
+const BrowserScript = require("./BrowserScript")
 
 class projectProgram extends jtree.program {
   getOrderedDependenciesArray() {
@@ -10,7 +11,7 @@ class projectProgram extends jtree.program {
     let lastLength
     while (cloned.length) {
       if (lastLength === cloned.length) {
-        cloned.getChildren().forEach(file => {
+        cloned.forEach(file => {
           console.log(`'${file.getLine()}' is missing '${file.getMissingDependencies(included).join(",")}'`)
         })
         throw new Error(
@@ -33,12 +34,24 @@ class projectProgram extends jtree.program {
     return sorted
   }
 
-  static _getRequiredFiles(str) {
-    const regex = /(\n|^)const .* \= require\("([^"]+)"\)/g
-    const regex2 = /"(.+)"/
-    const matches = str.match(regex)
+  static _extractImports(sourceCode, regex) {
+    const matches = sourceCode.match(regex)
     if (!matches) return []
-    return matches.map(match => match.match(regex2)[1]).map(file => {
+    const regex2 = /"(.+)"/
+    return matches.map(match => match.match(regex2)[1])
+  }
+
+  static _getImportsCommonJs(sourceCode) {
+    return this._extractImports(sourceCode, /(\n|^)const .* \= require\("([^"]+)"\)/g)
+  }
+
+  static _getImportsTypescript(sourceCode) {
+    return this._extractImports(sourceCode, /(\n|^)import .* from "([^"]+)"/g)
+  }
+
+  static getImports(sourceCode) {
+    const files = this._getImportsCommonJs(sourceCode).concat(this._getImportsTypescript(sourceCode))
+    return files.map(file => {
       let type = "external"
       if (file.startsWith(".")) type = "relative"
       else if (file.startsWith("/")) type = "absolute"
@@ -48,15 +61,19 @@ class projectProgram extends jtree.program {
 
   static getProjectProgram(arrayOfScriptPaths) {
     const files = new TreeNode(arrayOfScriptPaths.join("\n"))
-    const required = new TreeNode()
-    files.getChildren().forEach(child => {
+    const requiredFileList = new TreeNode()
+    files.forEach(child => {
       const line = child.getLine()
-      const content = fs.readFileSync(line, "utf8")
-      const requiredFiles = this._getRequiredFiles(content)
-      required.appendLineAndChildren(`file ${line}`, requiredFiles.length ? requiredFiles.join("\n") : undefined)
+      const requiredFiles = this.getImports(fs.readFileSync(line, "utf8"))
+      requiredFileList.appendLineAndChildren(
+        `file ${line}`,
+        requiredFiles.length ? requiredFiles.join("\n") : undefined
+      )
     })
-    return required.toString()
+    return requiredFileList.toString()
   }
 }
+
+projectProgram.BrowserScript = BrowserScript
 
 module.exports = projectProgram
